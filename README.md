@@ -48,8 +48,8 @@ The URLs should be unique and must point directly to product pages (e.g., www.ex
 > [!NOTE]
 >  Ideally this should be a cron of some kind, because we might have a lot of domains to crawl with async jobs.
 
-## Solutions
-1. Map inventory apis along with list of all its products.
+## Approaches
+1. Map inventory apis along with list of all its products and find the pattern among them.
 2. parse all the html content fetch all hrefs and identify if current href is a product link or not.
 	- can be identified via patterns
 		- product/, /item/, /p/.
@@ -57,3 +57,22 @@ The URLs should be unique and must point directly to product pages (e.g., www.ex
 	- can be identified via response.
 		- will have common characterstics like resp will be of list, with a link.and price, name/display_name.
 	- can be mapped in database.
+
+### Went Ahead with Approach 2.
+- We can parse the html, but html can have different links `inventory`, `products`, `seo`, `t&c` and we will find `inventory using regex` and will ignore rest all including product to avoid redundancy.
+- **Problem is Inventory URL Identification**
+    - Regex can be identified manually finding patterns or using fine tuned `llm models`.
+- **Problem is Number of Links on a domain**
+    - There can be a lot of different links but we cannot send them all as that will consume a lot of tokens hence will be expensive.
+        - Assuming 10000 Links on each domain after dedupe we can reduce the number significantly
+        - Some urls can be eliminated like t&c, about_us etc.
+        - product urls or urls having ids in their path.
+        - dedupe similar patterns and send only one among them.
+            - eg:- `snitch.com/catalog/?item=shirts` and `snitch.com/catalog/?item=tanktops` can be collected and we can send only one among them.
+    - with above assumptions and optimisations and `data cleaning` we can reduce the overall request to llm model significantly upto 95-99%.
+- **LLM Hallucination Problem**
+    - LLM's can easily hallucinate hence the data needs to be verified.
+        - Sampling
+        - using other llm for verification
+
+## Future Scope and Improvements
