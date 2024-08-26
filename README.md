@@ -1,7 +1,14 @@
 # shoppin_crawler
+## Setting up
 
 > [!NOTE]
-> Using Python, FastAPI, Scrapy.
+> Using Python==3.9.19, fastapi==0.112.2, Scrapy==2.11.2.
+
+1. Cloning the repo.
+2. Create Virtual Environment.`python -m venv venv`.
+3. Activate it `source venv/bin/activate`
+4. Install Required Dependencies `pip install -r requirements.txt`.
+5. Start Server `fastapi dev main.py`
 
 > [!TIP]
 > Using FastApi but Sanic is faster as per benchmarks.
