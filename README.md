@@ -70,9 +70,25 @@ The URLs should be unique and must point directly to product pages (e.g., www.ex
         - dedupe similar patterns and send only one among them.
             - eg:- `snitch.com/catalog/?item=shirts` and `snitch.com/catalog/?item=tanktops` can be collected and we can send only one among them.
     - with above assumptions and optimisations and `data cleaning` we can reduce the overall request to llm model significantly upto 95-99%.
+- After we have successfully collected list of catalog urls, now its time to process them to get all products.
+- Now using regex and llm models we can identify the correct way to fetch the product from the inventory we have.
+
+- **Pagination and infinite scrolling**
+    - As all the inventory urls are GET requests and can be paginated.
+    - to solve this we will have to try out all the possible ways to paginate and find out the correct one being implemented by the current domain.
+    - Upon identification we will keep on hitting the request until we get all the data if the current product.
+
 - **LLM Hallucination Problem**
     - LLM's can easily hallucinate hence the data needs to be verified.
         - Sampling
         - using other llm for verification
 
 ## Future Scope and Improvements
+> [!TIP]
+> Pagination technique identifiaction can be altogether be broken into different microservice responsible for identifying the pagination method used by domain.
+
+> [!TIP]
+> We can have a microservice for validating the false +ves and false -ves from llm response to detect the trusworthiness of llm responses.
+
+> [!TIP]
+> We have to deduce a way to update the items in-stock and out-of-the stock and their quantities in realtime and update ourselves as well.
