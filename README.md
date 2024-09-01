@@ -1,14 +1,4 @@
 # shoppin_crawler
-## Setting up
-
-> [!NOTE]
-> Using Python==3.9.19, fastapi==0.112.2, Scrapy==2.11.2.
-
-1. Cloning the repo.
-2. Create Virtual Environment.`python -m venv venv`.
-3. Activate it `source venv/bin/activate`
-4. Install Required Dependencies `pip install -r requirements.txt`.
-5. Start Server `fastapi dev main.py`
 
 > [!TIP]
 > Using FastApi but Sanic is faster as per benchmarks.
@@ -92,3 +82,19 @@ The URLs should be unique and must point directly to product pages (e.g., www.ex
 
 > [!TIP]
 > We have to deduce a way to update the items in-stock and out-of-the stock and their quantities in realtime and update ourselves as well.
+
+## Setting up
+
+> [!NOTE]
+> Using Python==3.9.19, fastapi==0.112.2, Scrapy==2.11.2.
+
+1. Cloning the repo.
+2. Create Virtual Environment.`python -m venv venv`.
+3. Activate it `source venv/bin/activate`
+4. Install Required Dependencies `pip install -r requirements.txt`.
+5. Start Server `fastapi run main.py`
+
+## Implementation Details
+1. Starting up server exposes 2 endpoints
+    1. `/get-collections` gets list of collections from the `start_urls` list in `collection_list_spide.py`.
+    2. `/get-products` gets list of products from the `start_urls` in `start_requests` function in `product_list_spider.py`.
