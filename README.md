@@ -86,13 +86,14 @@ The URLs should be unique and must point directly to product pages (e.g., www.ex
 ## Setting up
 
 > [!NOTE]
-> Using Python==3.9.19, fastapi==0.112.2, Scrapy==2.11.2.
+> Using Python==3.9.19, fastapi==0.112.2, Scrapy==2.11.2, splash==3.5(for dynamic webpage crawling).
 
 1. Cloning the repo.
 2. Create Virtual Environment.`python -m venv venv`.
 3. Activate it `source venv/bin/activate`
 4. Install Required Dependencies `pip install -r requirements.txt`.
 5. Start Server `fastapi run main.py`
+6. starting splash `docker run -it -p 8050:8050 --rm scrapinghub/splash`
 
 ## Implementation Details
 1. Starting up server exposes 2 endpoints
